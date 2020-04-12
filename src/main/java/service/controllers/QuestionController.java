@@ -73,7 +73,7 @@ public class QuestionController {
             throw new ValidationException();
         }
         questionService.save(questionForm);
-        return new ResponseEntity<>(new ResponseMessage("Добавление вопроса прошло успешно"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Adding a question was successful"), HttpStatus.OK);
     }
 
     @GetMapping("/isHasBestAnswer/{questionid}")

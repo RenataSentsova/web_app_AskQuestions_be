@@ -48,7 +48,7 @@ public class AnswerController {
             throw new ValidationException();
         }
         answerService.save(answerForm);
-        return new ResponseEntity<>(new ResponseMessage("Добавление ответа прошло успешно"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Adding an answer was successful"), HttpStatus.OK);
     }
 
     @DeleteMapping("/editor/deleteanswer/{id}")
@@ -62,6 +62,6 @@ public class AnswerController {
             throw new ValidationException();
         }
         answerService.changeBest(answerForm);
-        return new ResponseEntity<>(new ResponseMessage("Изменение статуса ответа прошло успешно"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Successful answer status change"), HttpStatus.OK);
     }
 }

@@ -24,6 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     private QuestionsRepository questionsRepository;
     @Autowired
     private AnswersRepository answersRepository;
+
     @Override
     public List<Category> findAll() {
         return categoriesRepository.findAllByOrderByIdAsc();

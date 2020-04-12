@@ -42,7 +42,7 @@ public class AuthController {
     @Autowired
     RoleRepository roleRepository;
     @Autowired
-    PasswordEncoder encoder;
+    PasswordEncoder passwordEncoder;
     @Autowired
     JwtProvider jwtProvider;
 
@@ -59,24 +59,24 @@ public class AuthController {
         if(this.userRepository.findByUsername(userDetails.getUsername()).get().getState().equals("active")){
             return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
         }
-        else return new ResponseEntity<>(new ResponseMessage("Fail -> ПОЛЬЗОВАТЕЛЬ НЕАКТИВЕН"),
+        else return new ResponseEntity<>(new ResponseMessage("Fail -> USER INACTIVE"),
                 HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Логин уже занят!"),
+            return new ResponseEntity<>(new ResponseMessage("Fail -> Login is already taken"),
                     HttpStatus.BAD_REQUEST);
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return new ResponseEntity<>(new ResponseMessage("Fail -> Данный email уже зарегистрирован!"),
+            return new ResponseEntity<>(new ResponseMessage("Fail -> This email is already registered"),
                     HttpStatus.BAD_REQUEST);
         }
 
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                passwordEncoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -85,13 +85,13 @@ public class AuthController {
             switch (role) {
                 case "admin":
                     Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                            .orElseThrow(() -> new RuntimeException("Fail! -> User Role not find"));
                     roles.add(adminRole);
 
                     break;
                 default:
                     Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+                            .orElseThrow(() -> new RuntimeException("Fail! -> User Role not find"));
                     roles.add(userRole);
             }
         });
@@ -100,6 +100,6 @@ public class AuthController {
         user.setState("active");
         userRepository.save(user);
 
-        return new ResponseEntity<>(new ResponseMessage("Регистрация прошла успешно!"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Registration completed successfully"), HttpStatus.OK);
     }
 }

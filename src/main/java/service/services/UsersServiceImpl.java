@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import service.models.*;
 import service.repositories.*;
 
+import java.net.UnknownServiceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +15,6 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService {
     @Autowired
     private UserRepository usersRepository;
-    @Autowired
-    private QuestionsRepository questionsRepository;
-    @Autowired
-    private AnswersRepository answersRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
     @Override
     public Long getUserIdByUsername(String username){
         return usersRepository.findByUsername(username).get().getId();
@@ -38,7 +33,7 @@ public class UsersServiceImpl implements UsersService {
     }
     @Override
     public void makeNonActive(String login){
-        User delUser = usersRepository.findByUsername(login).get();
+        User delUser = usersRepository.findByUsername(login).orElseThrow(IllegalArgumentException::new);
         delUser.setState("nonactive");
         usersRepository.save(delUser);
     }

@@ -64,6 +64,17 @@ public class User{
         this.email = email;
         this.password = password;
     }
+
+    public User(Long id, String state, String name, String username, String email, String password, Set<Role> roles) {
+        this.id = id;
+        this.state = state;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
     @OneToMany(mappedBy = "user")
     private List<Question> questions;
     @OneToMany(mappedBy = "user")

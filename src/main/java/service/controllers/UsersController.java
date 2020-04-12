@@ -35,14 +35,13 @@ public class UsersController {
         return usersService.getUserIdByUsername(username);
     }
 
-    // ИЗМЕНЕНИЕ СТАТУСА НА НЕАКТИВЕН
     @PostMapping("/editor/deleteuser")
     public ResponseEntity<?> deleteUser(@RequestBody String login, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
         usersService.makeNonActive(login);
-        return new ResponseEntity<>(new ResponseMessage("Изменение статуса прошло успешно"), HttpStatus.OK);
+        return new ResponseEntity<>(new ResponseMessage("Status change was successful"), HttpStatus.OK);
     }
 
 }

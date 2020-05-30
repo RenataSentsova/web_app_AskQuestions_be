@@ -26,6 +26,7 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
+    /* GET */
     @GetMapping("/answersCount")
     public int findCount(){
         return answerService.findAll().size();
@@ -42,6 +43,7 @@ public class AnswerController {
         return from(answerService.findAllByQuestion(question));
     }
 
+    /* POST */
     @PostMapping("/addanswer")
     public ResponseEntity<?> addAnswer(@RequestBody AnswerForm answerForm, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -50,12 +52,6 @@ public class AnswerController {
         answerService.save(answerForm);
         return new ResponseEntity<>(new ResponseMessage("Adding an answer was successful"), HttpStatus.OK);
     }
-
-    @DeleteMapping("/editor/deleteanswer/{id}")
-    public void delete(@PathVariable Long id){
-        answerService.delete(id);
-    }
-
     @PostMapping("/best")
     public ResponseEntity<?> changeBest(@RequestBody AnswerForm answerForm, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -64,4 +60,12 @@ public class AnswerController {
         answerService.changeBest(answerForm);
         return new ResponseEntity<>(new ResponseMessage("Successful answer status change"), HttpStatus.OK);
     }
+
+    /* DELETE */
+    @DeleteMapping("/editor/deleteanswer/{id}")
+    public void delete(@PathVariable Long id){
+        answerService.delete(id);
+    }
+
+
 }

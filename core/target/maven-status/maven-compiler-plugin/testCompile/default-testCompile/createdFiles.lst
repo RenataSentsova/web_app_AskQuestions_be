@@ -1,0 +1,6 @@
+selenium\tests\LoginTest.class
+selenium\pages\LoginPage.class
+mockito\UsersServiceImplTest.class
+selenium\tests\SignUpTest.class
+mockito\CategoryServiceImplTest.class
+selenium\tests\UsersStepsTest.class

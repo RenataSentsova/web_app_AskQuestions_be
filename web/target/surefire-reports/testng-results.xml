@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="8" passed="8">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="1883" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:50 EDT">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="1883" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:50 EDT">
+      <class name="mockito.UsersControllerTest">
+        <test-method status="PASS" signature="getUser() throws java.lang.Exception" name="getUser" duration-ms="95" started-at="2020-04-12T22:48:49 EDT" finished-at="2020-04-12T22:48:50 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUser -->
+        <test-method status="PASS" signature="getUserIdByUserName()" name="getUserIdByUserName" duration-ms="71" started-at="2020-04-12T22:48:49 EDT" finished-at="2020-04-12T22:48:50 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserIdByUserName -->
+        <test-method status="PASS" signature="deleteUser()" name="deleteUser" duration-ms="117" started-at="2020-04-12T22:48:49 EDT" finished-at="2020-04-12T22:48:50 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteUser -->
+        <test-method status="PASS" signature="getUsers() throws java.lang.Exception" name="getUsers" duration-ms="140" started-at="2020-04-12T22:48:49 EDT" finished-at="2020-04-12T22:48:50 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUsers -->
+      </class> <!-- mockito.UsersControllerTest -->
+      <class name="mockito.CategoryControllerTest">
+        <test-method status="PASS" signature="delete() throws java.lang.Exception" name="delete" duration-ms="1265" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:49 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- delete -->
+        <test-method status="PASS" signature="addCategory() throws java.lang.Exception" name="addCategory" duration-ms="1491" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:49 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addCategory -->
+        <test-method status="PASS" signature="findAll() throws java.lang.Exception" name="findAll" duration-ms="1623" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:49 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findAll -->
+        <test-method status="PASS" signature="findCount() throws java.lang.Exception" name="findCount" duration-ms="1663" started-at="2020-04-12T22:48:48 EDT" finished-at="2020-04-12T22:48:49 EDT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- findCount -->
+      </class> <!-- mockito.CategoryControllerTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

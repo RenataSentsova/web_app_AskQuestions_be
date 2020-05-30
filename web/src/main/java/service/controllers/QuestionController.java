@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.forms.QuestionForm;
 import service.models.Category;
-import service.models.Question;
 import service.models.Subcategory;
 import service.models.User;
 import service.response.ResponseMessage;
@@ -34,6 +33,8 @@ public class QuestionController {
     @Autowired
     private UsersService usersService;
 
+
+    /* GET */
     @GetMapping("/question/{questionid}")
     public QuestionDto findOne(@PathVariable Long questionid){
         return from(questionService.findOne(questionid));
@@ -67,15 +68,6 @@ public class QuestionController {
         return from(questionService.findAllByCategory(category));
     }
 
-    @PostMapping("/ask")
-    public ResponseEntity<?> addQuestion(@RequestBody QuestionForm questionForm, BindingResult bindingResult){
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException();
-        }
-        questionService.save(questionForm);
-        return new ResponseEntity<>(new ResponseMessage("Adding a question was successful"), HttpStatus.OK);
-    }
-
     @GetMapping("/isHasBestAnswer/{questionid}")
     public boolean isHasBestAnswer(@PathVariable Long questionid){
         return questionService.isHasBestAnswer(questionid);
@@ -86,6 +78,17 @@ public class QuestionController {
         return questionService.takeBestAnswerId(questionid);
     }
 
+    /* POST */
+    @PostMapping("/ask")
+    public ResponseEntity<?> addQuestion(@RequestBody QuestionForm questionForm, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+        questionService.save(questionForm);
+        return new ResponseEntity<>(new ResponseMessage("Adding a question was successful"), HttpStatus.OK);
+    }
+
+    /* DELETE */
     @DeleteMapping("/editor/deletequestion/{id}")
     public void delete(@PathVariable Long id){
         questionService.delete(id);

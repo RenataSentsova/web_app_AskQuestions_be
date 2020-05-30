@@ -19,6 +19,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    /* GET */
     @GetMapping("/categoriesCount")
     public int findCount(){
         return categoryService.findAll().size();
@@ -29,6 +30,7 @@ public class CategoryController {
         return from(categoryService.findAll());
     }
 
+    /* POST */
     @PostMapping("/editor/addCategory")
     public ResponseEntity<Object> addCategory(@RequestBody CategoryForm categoryForm, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
@@ -38,6 +40,7 @@ public class CategoryController {
         return ResponseEntity.ok().build();
     }
 
+    /* DELETE */
     @DeleteMapping("/editor/deleteCategory/{id}")
     public void delete(@PathVariable Long id) {
         categoryService.delete(id);
